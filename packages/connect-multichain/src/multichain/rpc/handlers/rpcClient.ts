@@ -1,7 +1,6 @@
 import type { Json } from '@metamask/utils';
 import fetch from 'cross-fetch';
 import {
-	getInfuraRpcUrls,
 	type InvokeMethodOptions,
 	type MultichainOptions,
 	RPCHttpErr,
@@ -46,9 +45,9 @@ export class RpcClient {
 
 	private getRpcEndpoint(scope: Scope) {
 
-		let readonlyRPCMap: RpcUrlsMap = this.config?.api?.readonlyRPCMap ?? {};
+		let rpcUrls: RpcUrlsMap = this.config?.api?.rpcUrls ?? {};
 
-		const rpcEndpoint = readonlyRPCMap[scope];
+		const rpcEndpoint = rpcUrls[scope];
 		if (!rpcEndpoint) {
 			throw new MissingRpcEndpointErr(`No RPC endpoint found for scope ${scope}`);
 		}

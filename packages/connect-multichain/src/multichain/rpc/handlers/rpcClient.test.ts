@@ -34,7 +34,7 @@ t.describe('RpcClient', () => {
 
 		mockConfig = {
 			api: {
-				readonlyRPCMap: {
+				rpcUrls: {
 					'eip155:1': 'https://mainnet.infura.io/v3/01234567890',
 					'eip155:11155111': 'https://custom-sepolia.com',
 				},
@@ -79,7 +79,7 @@ t.describe('RpcClient', () => {
 	});
 
 	t.describe('request', () => {
-		t.it('should use readonlyRPCMap rpc endpoint', async () => {
+		t.it('should use rpcUrls rpc endpoint', async () => {
 			const mockJsonResponse = {
 				jsonrpc: '2.0',
 				result: '0x1234567890abcdef',
@@ -137,7 +137,7 @@ t.describe('RpcClient', () => {
 			t.it('should use only default headers when RPC endpoint does not include infura and custom readonly RPC is provided', async () => {
 				const configWithCustomRPC = {
 					api: {
-						readonlyRPCMap: {
+						rpcUrls: {
 							'eip155:1': 'https://custom-ethereum-node.com/rpc',
 						},
 					},

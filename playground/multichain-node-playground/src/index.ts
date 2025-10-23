@@ -205,7 +205,7 @@ const main = async () => {
       url: 'https://playground.metamask.io',
     },
     api: {
-      readonlyRPCMap: getInfuraRpcUrls('FIX_THIS'),
+      rpcUrls: getInfuraRpcUrls('FIX_THIS'),
     },
   });
 
