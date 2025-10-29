@@ -36,7 +36,7 @@
     "@expo/vector-icons": "^15.0.2",
     "@metamask/connect-multichain": "workspace:^",
     "@metamask/mobile-wallet-protocol-core": "^0.3.0",
-    "@metamask/mobile-wallet-protocol-wallet-client": "0.2.1",
+    "@metamask/mobile-wallet-protocol-wallet-client": "0.2.2",
     "@metamask/utils": "^11.8.1",
     "@open-rpc/meta-schema": "^1.14.9",
     "@react-native-async-storage/async-storage": "^2.2.0",

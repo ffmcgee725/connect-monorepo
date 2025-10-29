@@ -3902,7 +3902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/mobile-wallet-protocol-core@npm:^0.3.0":
+"@metamask/mobile-wallet-protocol-core@npm:^0.3.0, @metamask/mobile-wallet-protocol-core@npm:^0.3.1":
   version: 0.3.1
   resolution: "@metamask/mobile-wallet-protocol-core@npm:0.3.1"
   dependencies:
@@ -3924,14 +3924,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/mobile-wallet-protocol-wallet-client@npm:0.2.1":
-  version: 0.2.1
-  resolution: "@metamask/mobile-wallet-protocol-wallet-client@npm:0.2.1"
+"@metamask/mobile-wallet-protocol-wallet-client@npm:0.2.2":
+  version: 0.2.2
+  resolution: "@metamask/mobile-wallet-protocol-wallet-client@npm:0.2.2"
   dependencies:
-    "@metamask/mobile-wallet-protocol-core": "npm:^0.2.0"
+    "@metamask/mobile-wallet-protocol-core": "npm:^0.3.1"
     "@metamask/utils": "npm:^9.1.0"
     uuid: "npm:^11.1.0"
-  checksum: 10/e3a82e7bf4673940ef433a0b16d8622a3d74cf69aa2c236c47b60f5f6e71d3da99c8ea8845a2635be592fd4ec5805d05a69bb31a2e13a00333c3ec455e18b9da
+  checksum: 10/f6a659901c04dfea62eba1e9f21bd5c010511959c00f0a3fd018df8972cb144107f830dd1894bdaf9654aab30742dfde3aef20bde72cf6f2efad84719a0f91e2
   languageName: node
   linkType: hard
 
@@ -3976,7 +3976,7 @@ __metadata:
     "@metamask/auto-changelog": "npm:^3.4.3"
     "@metamask/connect-multichain": "workspace:^"
     "@metamask/mobile-wallet-protocol-core": "npm:^0.3.0"
-    "@metamask/mobile-wallet-protocol-wallet-client": "npm:0.2.1"
+    "@metamask/mobile-wallet-protocol-wallet-client": "npm:0.2.2"
     "@metamask/utils": "npm:^11.8.1"
     "@open-rpc/meta-schema": "npm:^1.14.9"
     "@react-native-async-storage/async-storage": "npm:^2.2.0"
