@@ -3702,7 +3702,7 @@ __metadata:
     "@metamask/analytics": "workspace:^"
     "@metamask/auto-changelog": "npm:^3.4.3"
     "@metamask/mobile-wallet-protocol-core": "npm:^0.3.0"
-    "@metamask/mobile-wallet-protocol-dapp-client": "npm:^0.2.1"
+    "@metamask/mobile-wallet-protocol-dapp-client": "npm:^0.2.2"
     "@metamask/multichain-api-client": "npm:^0.8.0"
     "@metamask/multichain-ui": "workspace:^"
     "@metamask/onboarding": "npm:^1.0.1"
@@ -3902,7 +3902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/mobile-wallet-protocol-core@npm:^0.3.0":
+"@metamask/mobile-wallet-protocol-core@npm:^0.3.0, @metamask/mobile-wallet-protocol-core@npm:^0.3.1":
   version: 0.3.1
   resolution: "@metamask/mobile-wallet-protocol-core@npm:0.3.1"
   dependencies:
@@ -3913,14 +3913,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/mobile-wallet-protocol-dapp-client@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@metamask/mobile-wallet-protocol-dapp-client@npm:0.2.1"
+"@metamask/mobile-wallet-protocol-dapp-client@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@metamask/mobile-wallet-protocol-dapp-client@npm:0.2.2"
   dependencies:
-    "@metamask/mobile-wallet-protocol-core": "npm:^0.2.0"
+    "@metamask/mobile-wallet-protocol-core": "npm:^0.3.1"
     "@metamask/utils": "npm:^9.1.0"
     uuid: "npm:^11.1.0"
-  checksum: 10/9160a2d9026586718991ccaa7595a72090c3a24b1411887b79a43106dc8fbd0643d66c3f153fd649d15e72e79ef95fe22ae6cd50535948730d51e11a02dc1a62
+  checksum: 10/4a2186e6b6e4fcc96472da2dfe98026ec2fbfe01e2b895dbb0ce0098a789e4948908d46bace9514fd56c8cb80a3afd033b2e71300c8291ff9fd9d6fd7103dca4
   languageName: node
   linkType: hard
 

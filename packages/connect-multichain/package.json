@@ -66,7 +66,7 @@
   "dependencies": {
     "@metamask/analytics": "workspace:^",
     "@metamask/mobile-wallet-protocol-core": "^0.3.0",
-    "@metamask/mobile-wallet-protocol-dapp-client": "^0.2.1",
+    "@metamask/mobile-wallet-protocol-dapp-client": "^0.2.2",
     "@metamask/multichain-api-client": "^0.8.0",
     "@metamask/multichain-ui": "workspace:^",
     "@metamask/onboarding": "^1.0.1",
