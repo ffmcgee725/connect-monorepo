@@ -96,4 +96,6 @@ export type ExtendedTransport = Omit<Transport, 'connect'> & {
   }) => Promise<void>;
 
   sendEip1193Message: (request: unknown) => Promise<void>;
+
+  onMessage?: (callback: (message: unknown) => void) => void;
 };

@@ -68,20 +68,44 @@ export class EIP1193Provider extends EventEmitter<EIP1193ProviderEvents> {
   }
 
   // Getters and setters
-  public get selectedAccount(): Address | undefined {
-    return this.accounts[0];
+  public get selectedAccount(): Promise<Address | undefined> {
+    return this.#core.storage.adapter.get('accounts').then((accounts) => {
+      console.log('accounts in selectedAccount', accounts);
+      if (!accounts) {
+        return undefined;
+      }
+      const parsedAccounts = JSON.parse(accounts) as Address[];
+      return parsedAccounts?.[0];
+    }).catch((error) => {
+      console.error('error in selectedAccount', error);
+      return undefined;
+    });
   }
 
   public set accounts(accounts: Address[]) {
+    this.#core.storage.adapter.set('accounts', JSON.stringify(accounts));
     this.#accounts = accounts;
   }
 
-  public get accounts(): Address[] {
-    return this.#accounts;
+  public get accounts(): Promise<Address[] | undefined> {
+    return this.#core.storage.adapter.get('accounts').then((accounts) => {
+      console.log('accounts in selectedAccount', accounts);
+      if (!accounts) {
+        return undefined;
+      }
+      const parsedAccounts = JSON.parse(accounts) as Address[];
+      return parsedAccounts;
+    }).catch((error) => {
+      console.error('error in selectedAccount', error);
+      return undefined;
+    });
   }
 
-  public get selectedChainId(): Hex | undefined {
-    return this.#selectedChainId;
+  public get selectedChainId(): Promise<Hex | undefined> {
+    const selectedChainId = this.#core.storage.adapter.get('selectedChainId');
+    return Promise.resolve(
+      selectedChainId ? (selectedChainId as unknown as Hex) : undefined,
+    );
   }
 
   public set selectedChainId(chainId: Hex | number | undefined) {
@@ -89,10 +113,10 @@ export class EIP1193Provider extends EventEmitter<EIP1193ProviderEvents> {
       chainId && typeof chainId === 'number' ? numberToHex(chainId) : chainId;
 
     // Don't overwrite the selected chain ID with an undefined value
-    if (!hexChainId) {
+    if (!hexChainId || typeof hexChainId !== 'string') {
       return;
     }
-
+    this.#core.storage.adapter.set('selectedChainId', hexChainId);
     this.#selectedChainId = hexChainId as Hex;
   }
 }

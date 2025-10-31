@@ -17,7 +17,6 @@ function useSDK() {
   const [balance, setBalance] = useState<string>();
 
   useEffect(() => {
-    console.log('useEffect');
     const setupSDK = async () => {
       const clientSDK = await createMetamaskConnectEVM({
         dapp: {
@@ -26,6 +25,9 @@ function useSDK() {
         },
       });
       const provider = await clientSDK.getProvider();
+
+      setChainId(await clientSDK.getChainId());
+      setAccount(await clientSDK.getAccount());
 
       if (provider) {
         provider.on('connect', () => {
@@ -152,7 +154,7 @@ export const App = () => {
     const to = '0x0000000000000000000000000000000000000000';
     const transactionParameters = {
       to, // Required except during contract publications.
-      from: sdk.selectedAccount, // must match user's active address.
+      from: await sdk?.getAccount(), // must match user's active address.
       value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
     };
     console.log('transactionParameters', transactionParameters);
@@ -178,7 +180,7 @@ export const App = () => {
     }
     const result = await send_eth_signTypedData_v4(
       provider,
-      sdk?.selectedChainId ?? '',
+      await sdk?.getChainId() ?? '',
     );
     setResponse(result);
   };
@@ -207,6 +209,18 @@ export const App = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const eth_accounts = async () => {
+    if (!provider) {
+      setResponse(`invalid ethereum provider`);
+      return;
+    }
+    const response = await provider?.request({
+      method: 'eth_accounts',
+      params: [],
+    });
+    console.log('eth_accounts response', response);
   };
 
   return (
@@ -245,9 +259,9 @@ export const App = () => {
           <button
             className={'Button-Normal'}
             style={{ padding: 10, margin: 10 }}
-            onClick={connect}
+            onClick={eth_accounts}
           >
-            Request Accounts
+            eth_accounts
           </button>
 
           <button

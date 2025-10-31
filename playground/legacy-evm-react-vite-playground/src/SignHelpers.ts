@@ -90,7 +90,7 @@ export const send_eth_signTypedData_v4 = async (
 
 export const send_personal_sign = async (provider: EIP1193Provider) => {
   try {
-    const from = provider.selectedAccount;
+    const from = await provider.selectedAccount;
     console.log('from', from);
     const message = 'Hello World from the Create React dapp!';
     const hexMessage = '0x' + Buffer.from(message, 'utf8').toString('hex');

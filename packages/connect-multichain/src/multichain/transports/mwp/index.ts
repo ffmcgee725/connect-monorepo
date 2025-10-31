@@ -131,6 +131,11 @@ export class MWPTransport implements ExtendedTransport {
     }
   }
 
+  onMessage(callback: (message: unknown) => void): void {
+    console.log('setting up onMessage listener in mwp transport', callback);
+    this.dappClient.on('message', callback);
+  }
+
   private handleMessage(message: unknown): void {
     if (typeof message === 'object' && message !== null) {
       if ('data' in message) {
@@ -243,13 +248,8 @@ export class MWPTransport implements ExtendedTransport {
   }
 
   async sendEip1193Message(request: unknown): Promise<void> {
-    this.dappClient.sendRequest({
-      target: 'metamask-contentscript',
-      data: {
-        name: 'metamask-provider',
-        data: request,
-      },
-    });
+    console.log('sendEip1193Message in mwp transport', request);
+    this.dappClient.sendRequest(request);
   }
 
   async connect(options?: {
@@ -302,6 +302,10 @@ export class MWPTransport implements ExtendedTransport {
             };
 
             this.dappClient.on('message', async (message: unknown) => {
+              console.log(
+                'message in onMessage in connect in mwp transport',
+                message,
+              );
               if (typeof message === 'object' && message !== null) {
                 if ('data' in message) {
                   const messagePayload = message.data as Record<
