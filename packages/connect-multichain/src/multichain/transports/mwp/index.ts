@@ -427,7 +427,10 @@ export class MWPTransport implements ExtendedTransport {
         timeout,
       });
 
-      this.dappClient.sendRequest(request).catch(reject);
+      this.dappClient.sendRequest({
+        name: 'metamask-multichain-provider',
+        data: request
+      }).catch(reject);
     });
   }
 
