@@ -60,6 +60,7 @@ export default defineConfig([
       options.mainFields = ['browser', 'module', 'main'];
       options.conditions = ['browser'];
       options.outExtension = { ".js": '.mjs' };
+      options.define = { ...options.define, __ESM_BUILD__: 'true' } as any;
     },
     banner: {
       js: '/* Browser ES build */',
@@ -80,6 +81,7 @@ export default defineConfig([
       options.platform = 'browser';
       options.mainFields = ['browser', 'module', 'main'];
       options.conditions = ['browser'];
+      options.define = { ...options.define, __ESM_BUILD__: 'false' } as any;
     },
     banner: {
       js: '/* Browser UMD build */',
@@ -99,6 +101,7 @@ export default defineConfig([
       options.platform = 'browser';
       options.mainFields = ['browser', 'module', 'main'];
       options.conditions = ['browser'];
+      options.define = { ...options.define, __ESM_BUILD__: 'false' } as any;
     },
     banner: {
       js: '/* Browser IIFE build */',
@@ -117,6 +120,7 @@ export default defineConfig([
       options.mainFields = ['module', 'main'];
       options.conditions = ['node'];
       options.outExtension = { ".js": '.js' };
+      options.define = { ...options.define, __ESM_BUILD__: 'false' } as any;
     },
     banner: {
       js: '/* Node.js CJS build */',
@@ -135,6 +139,7 @@ export default defineConfig([
       options.mainFields = ['module', 'main'];
       options.conditions = ['node'];
       options.outExtension = { ".js": '.mjs' };
+      options.define = { ...options.define, __ESM_BUILD__: 'false' } as any;
     },
     banner: {
       js: '/* Node.js ES build */',
@@ -152,6 +157,7 @@ export default defineConfig([
       options.mainFields = ['react-native', 'node', 'browser'];
       options.conditions = ['react-native', 'node', 'browser'];
       options.outExtension = { ".js": '.mjs' };
+      options.define = { ...options.define, __ESM_BUILD__: 'false' } as any;
     },
     banner: {
       js: '/* React Native ES build */',

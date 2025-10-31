@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.packages.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "target": "es6",
+    "module": "ES2020",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "useUnknownInCatchVariables": false,
+    "incremental": true,
+    "lib": ["DOM", "ES2020"],
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["./src", "./tests"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+}

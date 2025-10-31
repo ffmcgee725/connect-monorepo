@@ -26,27 +26,49 @@ import { compressString } from '../multichain/utils';
 
 let __instance;
 
+// Build-time flag injected by tsup/esbuild to differentiate ESM vs non-ESM bundles
+declare const __ESM_BUILD__: boolean;
+
 /**
  * Preload install modal custom elements only once
  */
 export async function preload() {
-  __instance ??= await import(
-    // Use a non-literal specifier to avoid Vite static analysis of deep imports
-    // and gracefully handle absence of the Stencil loader in this package build.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    '@metamask/multichain-ui'.concat('/dist/loader/index.js') // Prefer ESM loader in browsers
-  )
-    .then(async (loader: any) => {
-      if (typeof loader?.defineCustomElements === 'function') {
-        loader.defineCustomElements();
-      }
-      return Promise.resolve(loader);
-    })
-    .catch(async (error) => {
-      console.error(`Gracefully Failed to load modal customElements:`, error);
-      return Promise.resolve(undefined);
-    });
+  /**
+   * We use a literal specifier for ESM/Vite builds (so Rollup can resolve it), and guard non-ESM builds (UMD/IIFE/Node)
+   * by computing the specifier at runtime or marking it external so the bundler doesn’t try to split. This avoids the
+   * IIFE failure while keeping Vite happy.
+   */
+  if (typeof __ESM_BUILD__ !== 'undefined' && __ESM_BUILD__) {
+    console.log('ESMBUILD PATH');
+    __instance ??= await import('@metamask/multichain-ui/dist/loader/index.js')
+      .then(async (loader: any) => {
+        if (typeof loader?.defineCustomElements === 'function') {
+          loader.defineCustomElements();
+        }
+        return Promise.resolve(loader);
+      })
+      .catch(async (error: unknown) => {
+        console.error(`Gracefully Failed to load modal customElements:`, error);
+        return Promise.resolve(undefined);
+      });
+  } else {
+    console.log('EVAL PATH .....yikers');
+    // Avoid bundler static analysis in non-ESM builds, to avoid IIFE build failure
+    const dynamicImport = (0, eval)('import');
+    __instance ??= await dynamicImport(
+      '@metamask/multichain-ui/dist/loader/index.js',
+    )
+      .then(async (loader: any) => {
+        if (typeof loader?.defineCustomElements === 'function') {
+          loader.defineCustomElements();
+        }
+        return Promise.resolve(loader);
+      })
+      .catch(async (error: unknown) => {
+        console.error(`Gracefully Failed to load modal customElements:`, error);
+        return Promise.resolve(undefined);
+      });
+  }
 }
 
 export class ModalFactory<T extends FactoryModals = FactoryModals> {

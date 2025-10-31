@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.packages.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "composite": false,
+    "incremental": true,
+    "tsBuildInfoFile": "./tsconfig.types.tsbuildinfo",
+    "outDir": "dist/browser/es",
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "module": "ES2020",
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "ES2020"],
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "tests", "**/*.spec.ts", "**/*.test.ts"]
+}

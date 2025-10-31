@@ -242,6 +242,16 @@ export class MWPTransport implements ExtendedTransport {
     }
   }
 
+  async sendEip1193Message(request: unknown): Promise<void> {
+    this.dappClient.sendRequest({
+      target: 'metamask-contentscript',
+      data: {
+        name: 'metamask-provider',
+        data: request,
+      },
+    });
+  }
+
   async connect(options?: {
     scopes: Scope[];
     caipAccountIds: CaipAccountId[];

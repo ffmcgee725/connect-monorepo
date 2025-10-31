@@ -34,6 +34,21 @@ export class DefaultTransport implements ExtendedTransport {
     }
   }
 
+  async sendEip1193Message(request: unknown): Promise<void> {
+    // eslint-disable-next-line no-restricted-globals
+    window.postMessage(
+      {
+        target: 'metamask-contentscript',
+        data: {
+          name: 'metamask-provider',
+          data: request,
+        },
+      },
+      // eslint-disable-next-line no-restricted-globals
+      location.origin,
+    );
+  }
+
   async connect(options?: {
     scopes: Scope[];
     caipAccountIds: CaipAccountId[];

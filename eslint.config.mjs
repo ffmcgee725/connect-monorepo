@@ -82,6 +82,15 @@ const config = createConfig([
       // We sometimes use enums as substitutes for strings.
       // Consider disabling this rule in `@metamask/eslint-config`.
       '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '^_',
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
     },
   },
   {
